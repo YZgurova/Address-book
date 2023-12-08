@@ -1,0 +1,32 @@
+<div fxLayout="row">
+    <!-- Left Side -->
+    <div class="left-side" fxFlex="30">
+      <div *ngFor="let user of users" (click)="onSelectUser(user)">
+        {{ user.name.title }} {{ user.name.first }} {{ user.name.last }}
+      </div>
+
+      <mat-paginator  [length]="60"
+              [pageSize]="10"
+              (page)="onPageChange($event.pageIndex)"
+              aria-label="Select page">
+      </mat-paginator>
+ </div>
+  
+    <!-- Right Side -->
+    <div class="right-side" fxFlex="70">
+      <div *ngIf="selectedUser" class="user-details">
+        <h2>User Details</h2>
+        <img [src]="selectedUser.picture.large" alt="User Picture" style="max-width: 100%; border-radius: 8px; margin-top: 10px;">
+
+        <p><strong>Name:</strong> {{ selectedUser.name.title }} {{ selectedUser.name.first }} {{ selectedUser.name.last }}</p>
+        <p><strong>Email:</strong> {{ selectedUser.email }}</p>
+        <p><strong>Location:</strong> {{ selectedUser.location.city }}, {{ selectedUser.location.state }}, {{ selectedUser.location.country }}</p>
+        <p><strong>Gender:</strong> {{ selectedUser.gender }}</p>
+        <p><strong>Date of Birth:</strong> {{ selectedUser.dob.date | date }}</p>
+        <p><strong>Registered:</strong> {{ selectedUser.registered.date | date }}</p>
+        <p><strong>Phone:</strong> {{ selectedUser.phone }}</p>
+        <p><strong>Cell:</strong> {{ selectedUser.cell }}</p>
+        <p><strong>Nationality:</strong> {{ selectedUser.nat }}</p>
+      </div>
+    </div>
+  </div>
